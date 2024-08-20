@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\bai tap\\Lap trinh mang\\Bai tap giua ki\\LTM\\VideoCallApp.csproj": {}
+    "D:\\C#\\Lap_trinh_mang\\WEBRTCHC\\LTM\\VideoCallApp.csproj": {}
   },
   "projects": {
-    "D:\\bai tap\\Lap trinh mang\\Bai tap giua ki\\LTM\\VideoCallApp.csproj": {
+    "D:\\C#\\Lap_trinh_mang\\WEBRTCHC\\LTM\\VideoCallApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\bai tap\\Lap trinh mang\\Bai tap giua ki\\LTM\\VideoCallApp.csproj",
+        "projectUniqueName": "D:\\C#\\Lap_trinh_mang\\WEBRTCHC\\LTM\\VideoCallApp.csproj",
         "projectName": "VideoCallApp",
-        "projectPath": "D:\\bai tap\\Lap trinh mang\\Bai tap giua ki\\LTM\\VideoCallApp.csproj",
-        "packagesPath": "C:\\Users\\simav\\.nuget\\packages\\",
-        "outputPath": "D:\\bai tap\\Lap trinh mang\\Bai tap giua ki\\LTM\\obj\\",
+        "projectPath": "D:\\C#\\Lap_trinh_mang\\WEBRTCHC\\LTM\\VideoCallApp.csproj",
+        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
+        "outputPath": "D:\\C#\\Lap_trinh_mang\\WEBRTCHC\\LTM\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\simav\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
