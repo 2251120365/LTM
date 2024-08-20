@@ -1,15 +1,16 @@
 ﻿import { db } from "./firebaseConfig.js";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  addDoc,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  onSnapshot,
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import
+  {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    addDoc,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    onSnapshot,
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -37,7 +38,8 @@ const currentURL = window.location.href;
 const urlParts = currentURL.split("/");
 const roomId = urlParts[urlParts.length - 1];
 
-async function init() {
+async function init()
+{
   localStream = await navigator.mediaDevices.getUserMedia(
     mediaStreamConstraints
   );
@@ -46,24 +48,31 @@ async function init() {
   remoteStream = new MediaStream();
 
   const roomDoc = doc(db, "rooms", roomId);
+
   const checkRoomDocExist = (await getDoc(roomDoc)).exists();
 
-  if (!checkRoomDocExist) {
+  if (!checkRoomDocExist)
+  {
     createOffer(roomDoc);
-  } else {
+  } else
+  {
     createAnswer(roomDoc);
   }
 }
 
-function createPeerConnection() {
+function createPeerConnection()
+{
   peerConnection = new RTCPeerConnection(servers);
 
-  localStream.getTracks().forEach((track) => {
+  localStream.getTracks().forEach((track) =>
+  {
     peerConnection.addTrack(track, localStream);
   });
 
-  peerConnection.ontrack = (event) => {
-    event.streams[0].getTracks().forEach((track) => {
+  peerConnection.ontrack = (event) =>
+  {
+    event.streams[0].getTracks().forEach((track) =>
+    {
       remoteStream.addTrack(track);
     });
   };
@@ -71,7 +80,8 @@ function createPeerConnection() {
   remoteVideo.srcObject = remoteStream;
 }
 
-async function createOffer(roomDoc) {
+async function createOffer(roomDoc)
+{
   createPeerConnection();
   const offerCandidates = collection(roomDoc, "offerCandidates");
   const answerCandidates = collection(roomDoc, "answerCandidates");
@@ -86,17 +96,21 @@ async function createOffer(roomDoc) {
     },
   };
 
-  peerConnection.onicecandidate = (event) => {
-    if (event.candidate) {
+  peerConnection.onicecandidate = (event) =>
+  {
+    if (event.candidate)
+    {
       addDoc(offerCandidates, event.candidate.toJSON());
     }
   };
 
   await setDoc(roomDoc, offer);
 
-  onSnapshot(roomDoc, (snapshot) => {
+  onSnapshot(roomDoc, (snapshot) =>
+  {
     const data = snapshot.data();
-    if (!peerConnection.currentRemoteDescription && data?.answer) {
+    if (!peerConnection.currentRemoteDescription && data?.answer)
+    {
       const answerDescription = new RTCSessionDescription(data.answer);
       peerConnection.setRemoteDescription(answerDescription);
     }
@@ -105,7 +119,8 @@ async function createOffer(roomDoc) {
   collecICECandidates(answerCandidates);
 }
 
-async function createAnswer(roomDoc) {
+async function createAnswer(roomDoc)
+{
   createPeerConnection();
   const offerCandidates = collection(roomDoc, "offerCandidates");
   const answerCandidates = collection(roomDoc, "answerCandidates");
@@ -123,8 +138,10 @@ async function createAnswer(roomDoc) {
     },
   };
 
-  peerConnection.onicecandidate = (event) => {
-    if (event.candidate) {
+  peerConnection.onicecandidate = (event) =>
+  {
+    if (event.candidate)
+    {
       addDoc(answerCandidates, event.candidate.toJSON());
     }
   };
@@ -134,10 +151,14 @@ async function createAnswer(roomDoc) {
   collecICECandidates(offerCandidates);
 }
 
-function collecICECandidates(ICECandidates) {
-  onSnapshot(ICECandidates, (snapshot) => {
-    snapshot.docChanges().forEach((change) => {
-      if (change.type === "added") {
+function collecICECandidates(ICECandidates)
+{
+  onSnapshot(ICECandidates, (snapshot) =>
+  {
+    snapshot.docChanges().forEach((change) =>
+    {
+      if (change.type === "added")
+      {
         const candidate = new RTCIceCandidate(change.doc.data());
         peerConnection.addIceCandidate(candidate);
       }
@@ -145,34 +166,54 @@ function collecICECandidates(ICECandidates) {
   });
 }
 
-document.getElementById("cameraBtn").addEventListener("click", function () {
+document.getElementById("cameraBtn").addEventListener("click", function ()
+{
   let videoTrack = localStream
     .getTracks()
     .find((track) => track.kind === "video");
 
-  if (videoTrack.enabled) {
+  if (videoTrack.enabled)
+  {
     videoTrack.enabled = false;
     document.getElementById("iconCamera").src = "/image/cameraOff.png";
     document.getElementById("cameraBtn").classList.add("red-background");
-  } else {
+  } else
+  {
     videoTrack.enabled = true;
     document.getElementById("iconCamera").src = "/image/cameraO.png";
     document.getElementById("cameraBtn").classList.remove("red-background");
   }
 });
-document.getElementById("microBtn").addEventListener("click", function () {
+document.getElementById("microBtn").addEventListener("click", function ()
+{
   let audioTrack = localStream
     .getTracks()
     .find((track) => track.kind === "audio");
 
-  if (audioTrack.enabled) {
+  if (audioTrack.enabled)
+  {
     audioTrack.enabled = false;
     document.getElementById("iconMic").src = "/image/mute-microphone.png";
     document.getElementById("microBtn").classList.add("red-background");
-  } else {
+  } else
+  {
     audioTrack.enabled = true;
     document.getElementById("iconMic").src =
       "/image/microphone-black-shape.png";
     document.getElementById("microBtn").classList.remove("red-background");
   }
+});
+
+
+document.getElementById("hangupBtn").addEventListener("click", async function () {
+  if (peerConnection) {
+    peerConnection.close();
+    peerConnection = null;
+  }
+  if (localStream) {
+    localStream.getTracks().forEach(track => track.stop());
+  }
+  const roomDoc = doc(db, "rooms", roomId);
+  await deleteDoc(roomDoc);
+  window.location.href = "/Index"; 
 });
