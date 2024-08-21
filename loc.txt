@@ -1,1 +1,32 @@
-Lộc nè
+Để thuyết phục mọi người sử dụng ứng dụng Video Call của nhóm mình, bạn có thể tập trung vào những điểm mạnh và tính năng nổi bật của ứng dụng, so sánh với các ứng dụng phổ biến khác và giải quyết những vấn đề mà người dùng thường gặp phải. Dưới đây là một số gợi ý bạn có thể sử dụng:
+1. Đơn giản, dễ sử dụng:
+•	Không cần cài đặt: Ứng dụng chạy trực tiếp trên trình duyệt, không yêu cầu người dùng tải xuống và cài đặt phần mềm phức tạp.
+•	Giao diện thân thiện: Thiết kế giao diện trực quan, dễ sử dụng, giúp người dùng nhanh chóng làm quen và sử dụng các tính năng một cách dễ dàng.
+2. Chất lượng cuộc gọi:
+•	Kết nối trực tiếp (P2P): Sử dụng công nghệ WebRTC để thiết lập kết nối trực tiếp giữa các người tham gia, giảm thiểu độ trễ và đảm bảo chất lượng cuộc gọi tốt hơn.
+•	Âm thanh và hình ảnh rõ nét: Ứng dụng tối ưu hóa việc truyền tải âm thanh và hình ảnh, mang lại trải nghiệm gọi video chất lượng cao.
+•	Ổn định: Ứng dụng xử lý tốt các tình huống mất kết nối hoặc thay đổi mạng, đảm bảo cuộc gọi không bị gián đoạn.
+3. Tính năng đa dạng:
+•	Gọi nhóm: Hỗ trợ cuộc gọi video nhóm với nhiều người tham gia, đáp ứng nhu cầu giao tiếp và làm việc nhóm.
+•	Cuộc gọi 1-1
+•	Tạo và tham gia phòng họp: Người dùng có thể tạo một phòng họp mới hoặc tham gia vào một phòng họp hiện có bằng ID phòng.
+4.Linh hoạt: Ứng dụng có thể chạy trên nhiều nền tảng và thiết bị khác nhau, bao gồm máy tính, điện thoại và máy tính bảng
+
+Tại sao cần sử dụng video call của nhóm mình vì nhóm mình chỉ cần id phòng:
+Google Meet: Bị giới hạn với cuộc gọi nhóm(1h)
+Teams:Phải tạo nhóm thì mới có thể tham gia
+
+
+WebRTC (Web Real-Time Communication):
+
+Chức năng chính: WebRTC là công nghệ giúp thực hiện truyền thông trực tiếp và thời gian thực giữa các trình duyệt hoặc ứng dụng. Nó cho phép truyền video, âm thanh và dữ liệu giữa các người dùng mà không cần qua máy chủ trung gian.
+
+Ứng dụng trong gọi video: WebRTC xử lý việc truyền và nhận dữ liệu video và âm thanh giữa các người dùng. Nó đảm bảo rằng cuộc gọi video diễn ra mượt mà và đồng bộ.
+
+Socket.IO:
+
+Chức năng chính: Socket.IO là một thư viện JavaScript giúp thiết lập kết nối thời gian thực giữa máy chủ và trình duyệt qua WebSocket hoặc các kỹ thuật khác.
+
+Ứng dụng trong gọi video: Socket.IO thường được sử dụng để truyền tải các tín hiệu điều khiển (signaling), như thông tin về việc kết nối, quản lý cuộc gọi, trao đổi các tin nhắn thông báo, hoặc thông báo sự kiện giữa các client và server. Điều này giúp thiết lập và quản lý kết nối WebRTC.
+
+Tóm lại, WebRTC là công nghệ chính để truyền video và âm thanh, trong khi Socket.IO giúp trao đổi các tín hiệu cần thiết để thiết lập và quản lý kết nối WebRTC.
